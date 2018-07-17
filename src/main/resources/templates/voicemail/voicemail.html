@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <title>Voice Mail</title>
+  <!-- Add js,css here -->
+  <script type="text/javascript" src="/ump/voicemail.js"></script>
+  <!-- /theme JS files -->
+</head>
+<body ng-controller="VoiceMail">
+<th:block layout:fragment="content">
+
+  <!-- Page header -->
+  <!--<div th:replace="groups/fragments/page-header::page-header"></div>-->
+  <!-- /page header-->
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Panel audio -->
+        <div th:replace="voicemail/fragments/panel-audio::panel-audio"></div>
+        <!-- Panel search -->
+        <div th:replace="voicemail/fragments/panel-search::panel-search"></div>
+        <!-- /panel search -->
+
+        <div class="panel panel-flat">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th><span>Id</span></th>
+                <th><span>Cus.Name</span></th>
+                <th><span>Cus.Type</span></th>
+                <th><span>Cus.Phone</span></th>
+                <th><span>Date Record</span></th>
+                <th><span>Brand Call</span></th>
+                <th><span>Agent</span></th>
+                <th><span>Status</span></th>
+                <th><span>Note</span></th>
+                <th width="36px"><span>Action</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="log in listLog">
+                <td ng-click="getSound(log.pathFileRecord,log.id)" class="viewDetail"> {{log.id}}</td>
+                <td ng-click="getSound(log.pathFileRecord,log.id)" class="viewDetail"> {{log.customerName}}</td>
+                <td ng-click="getSound(log.pathFileRecord,log.id)" class="viewDetail"> {{log.customerType}}</td>
+                <td ng-click="getSound(log.pathFileRecord,log.id" class="viewDetail"> {{log.customerPhone}}</td>
+                <td ng-click="getSound(log.pathFileRecord,log.id)" class="viewDetail"> {{log.dateRecord}}</td>
+                <td ng-click="getSound(log.pathFileRecord,log.id)" class="viewDetail"> {{log.branchCall}}</td>
+                <td ng-click="getSound(log.pathFileRecord,log.id)" class="viewDetail"> {{log.agentEmail}}</td>
+                <td >
+                  <select class="form-control select2" ng-model="log.statusAgentSeen" ng-change="onChangeStatus(log.id,log.statusAgentSeen,log.agentEmail)">
+                    <option value="0" style="color: blue">Open</option>
+                    <option value="1" style="color: yellow">In-Progress</option>
+                    <option value="2" style="color: greenyellow">Done</option>
+                  </select>
+                </td>
+                <td ng-click="getSound(log.pathFileRecord,log.id)" class="viewDetail"> {{log.agentNote}}</td>
+                <td class="text-right text-nowrap">
+                  <ul class="icons-list">
+                    <li><a ng-click="onDownload(log.pathFileRecord)"><i class="icon-file-download"></i></a></li>
+                    <li><a ng-click="onEditNote(log.id,log.agentNote)"><i class="icon-notebook"></i></a></li>
+                  </ul>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-footer text-right">
+            <form class="form-inline">
+              <h3>&nbsp;&nbsp;<label class="control-label">TOTAL ITEMS : {{totalItem}}</label>&nbsp;&nbsp;</h3>
+              <h3>
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onPrev()">
+                  PREV
+                </button>
+                &nbsp;&nbsp;<label class="control-label">{{params.pages}}/{{totalPage}}</label>&nbsp;&nbsp;
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onNext()">
+                  NEXT
+                </button>
+                <input type="number"  style="width: 110px; text-align:right;" align="left" ng-model="params.pageToGo">
+                <button type="button" style="width: 60px" class="btn btn-primary btnAddNewGroup" ng-click="onGo()">
+                  GO
+                </button>
+              </h3>
+            </form>
+            <!-- /paging element -->
+          </div>
+        </div>
+      </div>
+      <!-- Modals -->
+      <div th:replace="voicemail/fragments/modal-edit::modal-edit"></div>
+      <div th:replace="voicemail/fragments/modal-report::modal-report"></div>
+      <!-- /modals -->
+    </div>
+    <!-- /page content -->
+  </div>
+  <!-- /page container -->
+</th:block>
+</body>
+</html>

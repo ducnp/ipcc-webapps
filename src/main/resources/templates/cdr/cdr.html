@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>Import CDR</title>
+    <!-- Add js,css here -->
+    <script type="text/javascript" src="/ump/cdr.js"></script>
+    <!-- /theme JS files -->
+    <meta charset="UTF-8">
+</head>
+<body ng-controller="Cdr">
+<th:block layout:fragment="content">
+
+    <!-- Page header -->
+    <!--<div th:replace="groups/fragments/page-header::page-header"></div>-->
+    <!-- /page header-->
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Panel search -->
+                <div th:replace="cdr/fragments/cdr-upload::cdr-upload"></div>
+            </div>
+
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+</th:block>
+</body>
+</html>

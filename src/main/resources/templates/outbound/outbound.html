@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <title>Outbound</title>
+  <!-- Add js,css here -->
+  <script type="text/javascript" src="/ump/outbound.js"></script>
+  <!-- /theme JS files -->
+  <meta charset="UTF-8">
+</head>
+<body ng-controller="Outbound">
+<th:block layout:fragment="content">
+
+  <!-- Page header -->
+  <!--<div th:replace="groups/fragments/page-header::page-header"></div>-->
+  <!-- /page header-->
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+        <!-- Panel search -->
+        <div th:replace="outbound/fragments/panel-function::panel-function"></div>
+        <!-- /panel search -->
+        <div class="panel panel-flat">
+          <div class="table-responsive">
+
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th width="240px"><span>Date Import</span></th>
+                <th><span>File Import</span></th>
+                <th width="36px"><span>Action</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="history in listHistory">
+                <td > {{history[0]}}</td>
+                <td > {{history[1]}}</td>
+                <td class="text-right text-nowrap">
+                  <ul class="icons-list">
+                    <li><a ng-click="onShowDelete(history[0],history[1])"><i class="icon-trash"></i></a></li>
+                  </ul>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-footer text-right">
+            <form class="form-inline">
+              <h3>&nbsp;&nbsp;<label class="control-label">TOTAL ITEMS : {{totalItem}}</label>&nbsp;&nbsp;</h3>
+              <h3>
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onPrev()">
+                  PREV
+                </button>
+                &nbsp;&nbsp;<label class="control-label">{{params.pages}}/{{totalPage}}</label>&nbsp;&nbsp;
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onNext()">
+                  NEXT
+                </button>
+                <input type="number"  style="width: 110px; text-align:right;" align="left" ng-model="params.pageToGo">
+                <button type="button" style="width: 60px" class="btn btn-primary btnAddNewGroup" ng-click="onGo()">
+                  GO
+                </button>
+              </h3>
+            </form>
+            <!-- /paging element -->
+          </div>
+        </div>
+      </div>
+      <!-- Modals -->
+      <div th:replace="outbound/fragments/modal-survey::modal-survey"></div>
+      <div th:replace="outbound/fragments/modal-birthday::modal-birthday"></div>
+      <div th:replace="outbound/fragments/modal-other::modal-other"></div>
+      <div th:replace="outbound/fragments/modal-params::modal-params"></div>
+      <div th:replace="outbound/fragments/modal-delete::modal-delete"></div>
+      <!-- Modals -->
+    </div>
+    <!-- /page content -->
+  </div>
+  <!-- /page container -->
+</th:block>
+</body>
+</html>

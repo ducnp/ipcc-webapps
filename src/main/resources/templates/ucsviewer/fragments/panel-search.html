@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<!-- Panel search -->
+<div th:fragment="panel-search" class="panel panel-flat">
+
+  <div class="panel-heading">
+    <h5 class="panel-title"><span>UCS Viewer</span></h5>
+    <div class="heading-elements">
+      <ul class="icons-list">
+        <li><a data-action="collapse"></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <form ng-submit="onSearch()" method="GET" class="form-horizontal form-search row">
+      <!-- -->
+      <div class="row">
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label class="control-label col-md-4">From Date</label>
+                  <div class="col-md-8">
+
+                      <div class='input-group date' id='datetimepicker1'>
+                          <input type='text' ng-model="params.fromDate" name="fromDate" class="form-control fromDate" />
+                          <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                      </div>
+                      <script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker1').datetimepicker();
+                          });
+                      </script>
+
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label class="control-label col-md-4">To Date</label>
+                  <div class="col-md-8">
+
+                      <div class='input-group date' id='datetimepicker'>
+                          <input type='text' ng-model="params.toDate" name="toDate" class="form-control toDate" />
+                          <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                      </div>
+                      <script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker').datetimepicker();
+                          });
+                      </script>
+
+                  </div>
+              </div>
+          </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Interaction Type</span>:</label>
+            <div class="col-md-8">
+              <select class="form-control select2" ng-model="params.mediaTypeId">
+                <option value="all">ALL</option>
+                <option value="voice">Voice</option>
+                <option value="chat">Chat</option>
+                <option value="sms">Sms</option>
+                <option value="email">Email</option>
+                <option value="facebook">Social</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>NOTE</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.theComment">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Customer Name</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.customerName">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Customer Phone</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.customerPhone">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Customer Email</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.customerEmail">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Subject</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.subject">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Agent Name</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.agentName">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Interaction Content</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.structuredText">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label col-md-4"> <span>Disposition Code</span>:</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" ng-model="params.dispositionCode">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- -->
+      <!-- -->
+      <div class="row" align="center">
+        <button type="submit" style="width: 120px" class="btn btn-primary btnAddNewGroup">
+          Search
+        </button>
+        <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onExportExcel()">
+          Export Excel
+        </button>
+      </div>
+      <!-- -->
+      <!-- -->
+    </form>
+  </div>
+</div>
+<!-- /panel search -->
+</body>
+</html>

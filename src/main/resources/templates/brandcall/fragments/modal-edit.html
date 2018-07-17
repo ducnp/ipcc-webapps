@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- Modal backup -->
+<div th:fragment="modal-edit" class="modal fade modalEdit">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h5 class="modal-title">{{brandAddorEdit}}</h5>
+      </div>
+
+      <div class="modal-body">
+        <!--<label class="control-label"> <span> Value </span>:</label>
+        <div>
+          <input type="text" class="form-control" ng-model="modalValue">
+        </div>
+        <label class="control-label"> <span> Description </span>:</label>
+        <div>
+          <input type="text" class="form-control" ng-model="modalDescription">
+        </div>-->
+        <label class="control-label"> <span> Value </span>:</label>
+        <div>
+          <select ng-model="modalOption" class="form-control">
+            <option ng-repeat="option in listOptions" value="{{option}}">{{option.text}}</option>
+          </select>
+        </div>
+        <label class="control-label"> <span> Description </span>:</label>
+        <div>
+          <input type="text" class="form-control" ng-model="modalDescription">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btnBackupDevice" ng-click="onModalConfirm()" style="width: 100px">OK</button>
+        <button type="button" class="btn btn-link" data-dismiss="modal" style="width: 100px"> Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- /Modal backup -->
+</body>
+</html>

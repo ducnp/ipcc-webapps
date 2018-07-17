@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <title>Join Event</title>
+  <!-- Add js,css here -->
+  <script type="text/javascript" src="/ump/join-event.js"></script>
+  <!-- /theme JS files -->
+</head>
+<body ng-controller="JoinEvent" ng-init="init()">
+<th:block layout:fragment="content">
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+        <!-- Panel audio -->
+        <div th:replace="join-event/fragments/panel-audio::panel-audio"></div>
+
+        <!-- Panel search -->
+        <div th:replace="join-event/fragments/panel-search::panel-search"></div>
+
+        <!--Table-->
+        <div class="panel panel-flat">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <th><span>ID</span></th>
+                <th><span>Khu vực</span></th>
+                <th><span>Nhân viên Quản lý</span></th>
+                <th><span>KPP</span></th>
+                <th><span>Khách hàng</span></th>
+                <th><span>Số Điện thoại</span></th>
+                <th><span>Thời gian gọi</span></th>
+                <th class="text-center"><span>Kết quả cuộc gọi</span></th>
+                <th class="text-center"><span>Kết quả Xác nhận</span></th>
+                <th class="text-center"><span>Lời nhắn</span></th>
+                <th class="text-center"><span>Gọi</span></th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(key, cus) in listData track by key" ng-click="getSound(cus.recordPath,cus.id)">
+                  <td>{{cus.id}}</td>
+                  <td>{{cus.location}}</td>
+                  <td>{{cus.staffName}}</td>
+                  <td>{{cus.agencyName}}</td>
+                  <td>{{cus.customerName}}</td>
+                  <td>{{cus.customerPhone}}</td>
+                  <td>{{cus.callTime}}</td>
+                  <td class="text-center">
+                    <span ng-if="cus.callStatus == -1"class="label label-default text-uppercase">Chưa gọi</span>
+                    <span ng-if="cus.callStatus == 0"class="label label-primary text-uppercase">Chờ gọi</span>
+                    <span ng-if="cus.callStatus == 1"class="label label-success text-uppercase">Thành công</span>
+                    <span ng-if="cus.callStatus == 2"class="label label-danger text-uppercase">Thất bại</span>
+                  </td>
+                  <td class="text-center">
+                    <span ng-if="cus.callResult == 0"class="label label-default text-uppercase">Không nghe máy</span>
+                    <span ng-if="cus.callResult == 1"class="label label-success text-uppercase">Tham gia</span>
+                    <span ng-if="cus.callResult == 2"class="label label-danger text-uppercase">Từ chối</span>
+                    <span ng-if="cus.callResult == 3"class="label label-primary text-uppercase">Lời nhắn</span>
+                  </td>
+                  <td class="text-center">
+                    <a ng-show="cus.callResult==3" ng-click="onDownload(cus.recordPath)"><i class="icon-file-download2"></i></a>
+                  </td>
+                  <td class="text-center">
+                    <a ng-show="cus.callResult < 1" ng-click="startCall(cus.id)"><i class="icon-phone-outgoing"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-footer text-right">
+            <form class="form-inline">
+              <h3>&nbsp;&nbsp;<label class="control-label">TOTAL ITEMS : {{totalItem}}</label>&nbsp;&nbsp;</h3>
+              <h3>
+                <button type="button" style="width: 120px" class="btn btn-xs btn-primary btnAddNewGroup" ng-click="onPrev()">
+                  PREV
+                </button>
+                &nbsp;&nbsp;<label class="control-label">{{params.pages}}/{{totalPage}}</label>&nbsp;&nbsp;
+                <button type="button" style="width: 120px" class="btn btn-xs btn-primary btnAddNewGroup" ng-click="onNext()">
+                  NEXT
+                </button>
+              </h3>
+            </form>
+            <!-- /paging element -->
+          </div>
+        </div>
+      </div>
+
+      <!-- /modals -->
+    </div>
+    <!-- /page content -->
+  </div>
+  <!-- /page container -->
+</th:block>
+</body>
+</html>

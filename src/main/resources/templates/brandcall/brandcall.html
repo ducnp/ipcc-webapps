@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <title>Brand Call</title>
+  <!-- Add js,css here -->
+  <script type="text/javascript" src="/ump/brandcall.js"></script>
+  <!-- /theme JS files -->
+  <meta charset="UTF-8">
+</head>
+<body ng-controller="BrandCall">
+<th:block layout:fragment="content">
+
+  <!-- Page header -->
+  <!--<div th:replace="groups/fragments/page-header::page-header"></div>-->
+  <!-- /page header-->
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+        <div class="panel panel-flat">
+          <div class="table-responsive">
+
+            <div align="right" style="padding-right: 20px;padding-top: 20px">
+              <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onAddNew()">
+                ADD NEW
+              </button>
+            </div>
+
+            </br>
+            </br>
+            </br>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th><span>Id</span></th>
+                <th><span>Value</span></th>
+                <th><span>Description</span></th>
+                <th width="36px"><span>Action</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="brandCall in listBrandcall">
+                <td > {{brandCall.id}}</td>
+                <td > {{brandCall.showValue}}</td>
+                <td > {{brandCall.description}}</td>
+
+                <td class="text-right text-nowrap">
+                  <ul class="icons-list">
+                    <!--<li><a ng-click="onEdit(brandCall.id,brandCall.showValue,brandCall.description)"><i class="icon-pencil7"></i></a></li>-->
+                    <li><a ng-click="onModalDelete(brandCall.id,brandCall.showValue)"><i class="icon-trash"></i></a></li>
+                  </ul>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-footer text-right">
+            <form class="form-inline">
+              <h3>&nbsp;&nbsp;<label class="control-label">TOTAL ITEMS : {{totalItem}}</label>&nbsp;&nbsp;</h3>
+              <h3>
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onPrev()">
+                  PREV
+                </button>
+                &nbsp;&nbsp;<label class="control-label">{{params.pages}}</label>&nbsp;&nbsp;
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onNext()">
+                  NEXT
+                </button>
+              </h3>
+            </form>
+            <!-- /paging element -->
+          </div>
+        </div>
+      </div>
+      <!-- Modals -->
+      <div th:replace="brandcall/fragments/modal-edit::modal-edit"></div>
+      <div th:replace="brandcall/fragments/modal-delete::modal-delete"></div>
+      <!-- /modals -->
+    </div>
+    <!-- /page content -->
+  </div>
+  <!-- /page container -->
+</th:block>
+</body>
+</html>

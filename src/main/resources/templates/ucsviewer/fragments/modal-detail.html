@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Modal backup -->
+<div th:fragment="modal-detail" class="modal fade modalDetail">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <!--<h5 class="modal-title"> View Detail </h5>-->
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label"> <span style="font-weight: bold;"> Loại interaction </span>:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="interactionType">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label"> <span style="font-weight: bold;"> Tên Agent </span>:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="agentName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label"> <span style="font-weight: bold;"> Tên khách hàng </span>:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="customerName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label"> <span style="font-weight: bold;"> Nội dung </span>:</label>
+                        <div class="col-sm-10">
+                            <!--<p ng-bind-html="content"></p>-->
+                            <textarea rows="8" cols="55"  ng-bind-html="content"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label"> <span style="font-weight: bold;"> Note </span>:</label>
+                        <div class="col-sm-10">
+                            <textarea rows="4" cols="55"  ng-model="note"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-dismiss="modal" style="width: 100px"> Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /Modal backup -->
+</body>
+</html>

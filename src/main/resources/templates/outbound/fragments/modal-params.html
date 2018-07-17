@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- Modal backup -->
+<div th:fragment="modal-params" class="modal fade modalParams">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h5 class="modal-title">Edit Default Params</h5>
+      </div>
+
+      <div class="modal-body">
+        <label class="control-label"> <span> Contact Info Type </span>:</label>
+        <input type="number" class="form-control" ng-model="modalContactInfoType"/>
+        <label class="control-label"> <span> Record Type </span>:</label>
+        <input type="number" class="form-control" ng-model="modalRecordType"/>
+        <label class="control-label"> <span> Record Status </span>:</label>
+        <input type="number" class="form-control" ng-model="modalRecordStatus"/>
+        <label class="control-label"> <span> Call Result </span>:</label>
+        <input type="number" class="form-control" ng-model="modalCallResult"/>
+        <label class="control-label"> <span> Attempt </span>:</label>
+        <input type="number" class="form-control" ng-model="modalAttempt"/>
+        <label class="control-label"> <span> Daily From </span>:</label>
+        <input type="number" class="form-control" ng-model="modalDailyFrom"/>
+        <label class="control-label"> <span> Daily Till </span>:</label>
+        <input type="number" class="form-control" ng-model="modalDailyTill"/>
+        <label class="control-label"> <span> Tz Bbid </span>:</label>
+        <input type="number" class="form-control" ng-model="modalTzBbid"/>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btnBackupDevice" ng-click="onModalEditParamsConfirm()" style="width: 130px">Ok</button>
+        <button type="button" class="btn btn-primary btnBackupDevice" ng-click="onModalResetParamsConfirm()" style="width: 130px">Reset Params</button>
+        <button type="button" class="btn btn-link" data-dismiss="modal" style="width: 130px" ng-click="onCancelParamsConfirm()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- /Modal backup -->
+</body>
+</html>

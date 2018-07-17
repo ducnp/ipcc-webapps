@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<!-- Panel search -->
+<div th:fragment="panel-search" class="panel panel-flat">
+
+    <div class="panel-heading">
+        <h5 class="panel-title"><span>Voice Mail</span></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form ng-submit="onSearch()" method="GET" class="form-horizontal form-search row">
+            <!-- -->
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4"> <span>Customer Name</span>:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="params.customerName">
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+                <!-- -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4"> <span>Customer Type</span>:</label>
+                        <div class="col-md-8">
+                            <select class="form-control select2" ng-model="params.customerType">
+                                <option value="all">ALL</option>
+                                <option value="0">KH Thường</option>
+                                <option value="1">KH VIP</option>
+                                <option value="null">NONE</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+                <!-- -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4"> <span>Customer Phone</span>:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="params.customerPhone">
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+                <!-- -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Date Record</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control dateRecord"
+                                       name="fromDate"
+                                       ng-model="params.dateRecord">
+                                <span class="input-group-addon"><i class="icon-calendar3"></i></span>
+                                <script>
+                  $(function () {
+                    $('.dateRecord').inputmask(constants.DATE_INPUT_MASK_FORMAT);
+                  })
+
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">From Date</label>
+                        <div class="col-md-8">
+                            <!--<div class="input-group">-->
+                                <!--<span class="input-group-addon"><i class="icon-calendar3"></i></span>-->
+                                <input type="text" class="form-control fromDate"
+                                       name="fromDate"
+                                       ng-model="params.fromDate">
+                                <script>
+                                  $(function () {
+
+                                    $('.fromDate').pickadate({
+                                           format: 'yyyy-mm-dd',
+                                    });
+                                  })
+                                </script>
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+                <!-- -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">To Date</label>
+                        <div class="col-md-8">
+                            <!--<div class="input-group">-->
+                                <input type="text" class="form-control toDate"
+                                       name="toDate"
+                                       ng-model="params.toDate">
+                                <!--<span class="input-group-addon"><i class="icon-calendar3"></i></span>-->
+                                <script>
+                           $(function () {
+
+                                    $('.toDate').pickadate({
+                                           format: 'yyyy-mm-dd',
+                                    });
+                                  })
+
+                                </script>
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4"> <span>Brand Call</span>:</label>
+                        <div class="col-md-8">
+                            <select class="form-control select2" name="brandcall" ng-model="params.brandcall">
+                                <option value="all">All</option>
+                                <option ng-repeat="brandcall in brandcalls" value="{{brandcall.searchValue}}">
+                                    {{brandcall.showValue}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4"> <span>Status</span>:</label>
+                        <div class="col-md-8">
+                            <select class="form-control select2" ng-model="params.status">
+                                <option value="all">ALL</option>
+                                <option value="0">Open</option>
+                                <option value="1">In-Progress</option>
+                                <option value="2">Done</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label col-md-4"> <span>Sort By</span>:</label>
+                        <div class="col-md-8">
+                            <select class="form-control select2" ng-model="params.sortBy">
+                                <option value="pathFileRecord">Name file record</option>
+                                <option value="customerName">Cus name</option>
+                                <option value="customerType">Cus type</option>
+                                <option value="customerPhone">Cus phone</option>
+                                <option value="dateRecord">Date record</option>
+                                <option value="branchCall">Brand call</option>
+                                <option value="statusAgentSeen">Status</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" ng-click="onChangeSort()">{{params.sort}}</button>
+                </div>
+            </div>
+            <!-- -->
+            <!-- -->
+            <div class="row" align="center">
+                <button type="submit" style="width: 120px" class="btn btn-primary btnAddNewGroup">
+                    Search
+                </button>
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup"
+                        ng-click="onClearAll()">
+                    Clear All
+                </button>
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup"
+                        ng-click="onExportExcel()">
+                    Export Excel
+                </button>
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup"
+                        ng-click="onReports()">
+                    Report
+                </button>
+            </div>
+            <!-- -->
+            <!-- -->
+        </form>
+    </div>
+</div>
+<!-- /panel search -->
+</body>
+</html>

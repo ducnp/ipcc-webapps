@@ -1,0 +1,77 @@
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    url: jdbc:sqlserver://172.16.1.122;databaseName=voice_mail
+    username: sa
+    password: 1pcc@cb
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    database: default
+    hibernate:
+      naming:
+        physicalStrategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  http.multipart.max-file-size: 20Mb
+  http.multipart.max-request-size: 20Mb
+ucs:
+  datasource:
+    url: jdbc:sqlserver://172.16.1.123;databaseName=ucs
+    username: sa
+    password: 1pcc@cb
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+outbound:
+  datasource:
+    url: jdbc:sqlserver://172.16.1.122;databaseName=calling
+    username: sa
+    password: 1pcc@cb
+    driverClassName:  com.microsoft.sqlserver.jdbc.SQLServerDriver
+jhipster:
+    http:
+        version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
+        cache: # Used by the CachingHttpHeadersFilter
+            timeToLiveInDays: 1461
+    cache: # Cache configuration
+        ehcache: # Ehcache configuration
+            time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+            max-entries: 100 # Number of objects in each cache entry
+    # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
+    cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+        allowed-headers: "*"
+        exposed-headers: "Authorization"
+        allow-credentials: true
+        max-age: 1800
+    security:
+        authentication:
+            jwt:
+                secret: my-secret-token-to-change-in-production
+                # Token is valid 24 hours
+                token-validity-in-seconds: 86400
+                token-validity-in-seconds-for-remember-me: 2592000
+application:
+    ldap:
+      enabled: true #true/false
+      url: ldap://172.24.104.10:389
+      base: dc=vnpt-technology,dc=vn
+      userDN: ssdclab@vnpt-technology.vn
+      password: Ssdc123!
+      listMail: thangnc2@vnpt-technology.vn;huyvv@vnpt-technology.vn
+    cfg_idb_01:
+      url: jdbc:sqlserver://172.16.1.121;databaseName=configdb
+      user: sa
+      pass: 1pcc@cb
+      driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+voice_mail_host: http://10.56.237.45:8080/voicemail/voice_mail/
+excel_host: http://127.0.0.1/
+app_name: outbound
+
+server:
+  host: localhost
+  port: 9393
+
+join_event_audio_host: http://172.16.4.24:9898/ACB_JoinEvent_814/voice_message//
+ssg_url: http://172.16.1.17:9800/SSG?TenantName=Environment
+ivr_profile: IVR_Outbound
+max_attempts: 2

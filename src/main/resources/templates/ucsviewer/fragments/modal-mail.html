@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+</head>
+<body>
+<!-- Modal backup -->
+<div th:fragment="modal-mail">
+
+
+
+    <div id="myModal" class="modal fade modalMail">
+        <div class="modal-dialog modal-lg" style="width: 85%">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">SHOW CONTENT</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <p ng-bind-html="structText"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="width: 120px" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal backup -->
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Add js,css here -->
+</head>
+<body>
+<!-- Main navbar -->
+<div th:fragment="navbar" class="navbar navbar-inverse bg-indigo navbar-fixed-top" id="navbar-main">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/" style="padding: 10px 20px;">
+      <img src="/assets/images/logo_light2.png" alt="VNPT-TECHNOLOGY" style="height: 100%;">
+    </a>
+
+    <ul class="nav navbar-nav pull-right visible-xs-block">
+      <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+    </ul>
+  </div>
+
+  <div class="navbar-collapse collapse" id="navbar-mobile">
+    <ul class="nav navbar-nav navUmp">
+      <li class="dropdown">
+        <a href="/voicemail" class="navLv1"><span> Voice Mail </span></a>
+      </li>
+
+      <li class="dropdown">
+        <a href="/outbound" class="navLv1"><span> Outbound</span></a>
+      </li>
+
+      <li class="dropdown">
+          <a href="/import-cdr" class="navLv1"><span> Import CDR</span></a>
+      </li>
+
+      <li class="dropdown">
+        <a href="/join-event" class="navLv1"><span> Join Event</span></a>
+      </li>
+
+      <li class="dropdown">
+        <a href="/ucsviewer" class="navLv1"><span> UCS Viewer</span></a>
+      </li>
+
+      <li class="dropdown">
+        <a href="/brandcall" class="navLv1"><span> BrandCall</span></a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="/" class="navLv1"><span> Logout</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- /main navbar -->
+</body>
+</html>

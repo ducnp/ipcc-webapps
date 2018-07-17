@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Report</title>
+
+</head>
+<body>
+<!-- Modal backup -->
+<div th:fragment="modal-report">
+
+
+
+  <div id="myModal" class="modal fade modalReport">
+    <div class="modal-dialog modal-lg" style="width: 85%">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Report</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label class="control-label col-md-3">From Date</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control fromDate" style="margin-top:  -9px;"
+                name="fromDate"
+                ng-model="params.fromDateReport"
+                required="required">
+                <script>
+                $(function () {
+
+                $('.fromDate').pickadate({
+                format: 'yyyy-mm-dd',
+                });
+                })
+                </script>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label col-md-3">To Date</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control toDate"
+                       name="toDate" style="margin-top:  -9px;"
+                       ng-model="params.toDateReport"
+                       required="required">
+                <!--<span class="input-group-addon"><i class="icon-calendar3"></i></span>-->
+                <script>
+                    $(function () {
+
+                        $('.toDate').pickadate({
+                            format: 'yyyy-mm-dd',
+                        });
+                    })
+
+                </script>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="table-responsive" style="margin-top:  10px;">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th><span>No</span></th>
+                  <th><span>Agent Name :</span></th>
+                  <th><span>Done :</span></th>
+                  <th><span>In-Process :</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="reportData in listReportData">
+                  <td> {{reportData[0]}}</td>
+                  <td> {{reportData[1]}}</td>
+                  <td> {{reportData[2]}}</td>
+                  <td> {{reportData[3]}}</td>
+                </tr>
+                </tbody>
+              </table>
+              <div  style="margin-top:  10px; margin-right: 20px" align="right">
+                <label class="control-label">TOTAL : {{listReportDataTotal}}</label>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onReportsViews()">
+            View Report
+          </button>
+          <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onReportsConfirm()">
+            Export Excel
+          </button>
+          <button type="button" style="width: 120px" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal backup -->
+</body>
+</html>

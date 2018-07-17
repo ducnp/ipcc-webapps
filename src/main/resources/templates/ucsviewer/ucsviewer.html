@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <title>UCS Viewer</title>
+  <!-- Add js,css here -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+
+  <!-- /theme JS files -->
+  <meta charset="UTF-8">
+</head>
+<body ng-controller="UCSViewer" ng-init="init()">
+<th:block layout:fragment="content">
+
+  <!-- Page header -->
+  <!--<div th:replace="groups/fragments/page-header::page-header"></div>-->
+  <!-- /page header-->
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Panel search -->
+        <div th:replace="ucsviewer/fragments/panel-search::panel-search"></div>
+        <!-- /panel search -->
+        <div class="panel panel-flat">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <!--<th><span>Số TT</span></th>-->
+                <th><span>Interaction ID</span></th>
+                <th><span>Agent</span></th>
+                <th><span>Thời gian bắt đầu</span></th>
+                <th><span>Thời gian kết thức</span></th>
+                <th><span>Loại Interaction</span></th>
+                <th><span>Subject</span></th>
+                <th><span>Tên khách hàng</span></th>
+                <th><span>Số điện thoại</span></th>
+                <th><span>Email</span></th>
+                <th><span>Disposition code</span></th>
+                <th><span>Note</span></th>
+                <th><span>Content</span></th>
+                  <!--<th><span>Nội dung Interaction</span></th>-->
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr ng-repeat="ucsviewer in listUCSViewer">
+                  <!--<td > {{ucsviewer.id}}</td>-->
+
+                  <td > <a ng-click="onDetail(ucsviewer.mediaTypeId, ucsviewer.agentName, ucsviewer.customerName, ucsviewer.structuredText, ucsviewer.theComment)">{{ucsviewer.id}}</a> </td>
+                  <td > {{ucsviewer.agentName}}</td>
+                  <td > {{ucsviewer.startDate}}</td>
+                  <td > {{ucsviewer.endDate}}</td>
+                  <td > {{ucsviewer.mediaTypeId}}</td>
+                  <td > {{ucsviewer.subject}}</td>
+                  <td > {{ucsviewer.customerName}}</td>
+                  <td > {{ucsviewer.phone}}</td>
+                  <td > {{ucsviewer.email}}</td>
+                  <td > {{ucsviewer.disposition}}</td>
+                  <td > {{ucsviewer.theComment}}</td>
+                  <td ng-if="ucsviewer.mediaTypeId == 'email' || ucsviewer.mediaTypeId == 'chat' || ucsviewer.mediaTypeId == 'sms'">
+                      <ul class="icons-list">
+                          <li><a ng-click="onShowModal(ucsviewer.structuredText)"><i class="icon-notebook"></i></a></li>
+                          <li><a ng-if="ucsviewer.mediaTypeId == 'email'" ng-click="onDownloadFile(ucsviewer.id)"><i class="icon-file-download"></i></a></li>
+                      </ul>
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel-footer text-right">
+            <form class="form-inline">
+              <h3>&nbsp;&nbsp;<label class="control-label">TOTAL ITEMS : {{totalItem}}</label>&nbsp;&nbsp;</h3>
+              <h3>
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onPrev()">
+                  PREV
+                </button>
+                &nbsp;&nbsp;<label class="control-label">{{params.pages}}/{{totalPage}}</label>&nbsp;&nbsp;
+                <button type="button" style="width: 120px" class="btn btn-primary btnAddNewGroup" ng-click="onNext()">
+                  NEXT
+                </button>
+              </h3>
+            </form>
+            <!-- /paging element -->
+          </div>
+        </div>
+      </div>
+        <div th:replace="ucsviewer/fragments/modal-mail::modal-mail"></div>
+        <div th:replace="ucsviewer/fragments/modal-detail::modal-detail"></div>
+    </div>
+    <!-- /page content -->
+  </div>
+  <!-- /page container -->
+</th:block>
+</body>
+</html>

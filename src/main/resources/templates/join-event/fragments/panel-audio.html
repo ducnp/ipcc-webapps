@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<!-- Panel search -->
+
+<div th:fragment="panel-audio" class="panel panel-flat">
+  <div class="panel-heading">
+    <h5 class="panel-title"><span>Audio</span></h5>
+    <div class="heading-elements">
+      <ul class="icons-list">
+        <li><a data-action="collapse"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div align="center">
+      <h3>ID : {{currentId}}</h3>
+      <audio id="myAudio2" controls style="width: 500px; height: 50px ; background-color:powderblue;">
+        <source src="{{currentAudio}}" type="audio/wav">
+      </audio>
+    </div>
+  </div>
+</div>
+<!-- /panel search -->
+</body>
+</html>

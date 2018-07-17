@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<!-- Panel search -->
+<div th:fragment="cdr-upload" class="panel panel-flat">
+
+    <div class="panel-heading">
+        <h5 class="panel-title"><span>Syslog</span></h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal form-search row" id="formdataimport">
+            <!-- -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group" style="margin-top:  5px;">
+                        <div class="col-md-12">
+                            <input type="file" class="file-input-custom" data-show-caption="true"
+                                   data-show-upload="true"  name="file" id="file"
+                                   onchange="angular.element(this).scope().changeFile(this)">
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+                <button type="button" style="width: 150px" class="btn btn-primary btnAddNewGroup" ng-click="onImport()">
+                    Import File
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- /panel search -->
+</body>
+</html>

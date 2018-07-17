@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Survey</title>
+</head>
+<body>
+<!-- Modal backup -->
+<div th:fragment="modal-survey">
+
+  <div id="myModal" class="modal fade modalSurvey">
+    <div class="modal-dialog modal-lg" style="width: 85%">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Survey Preview</h4>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th><span>ID</span></th>
+                <th><span>Mã KH</span></th>
+                <th><span>Tên KH</span></th>
+                <th><span>SĐT 1</span></th>
+                <th><span>SĐT 2</span></th>
+                <th><span>ACCTNBR</span></th>
+                <th><span>Tên CN Thực Hiện</span></th>
+                <th><span>Check</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="survey in listSurvey">
+                <td> {{survey[0]}}</td>
+                <td> {{survey[1]}}</td>
+                <td> {{survey[2]}}</td>
+                <td> {{survey[3]}}</td>
+                <td> {{survey[4]}}</td>
+                <td> {{survey[5]}}</td>
+                <td> {{survey[6]}}</td>
+                <td> {{survey[11]}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal backup -->
+</body>
+</html>
